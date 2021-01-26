@@ -1,0 +1,47 @@
+{
+  "name": "solid-theme",
+  "displayName": "Solid Theme",
+  "description": "A solid theme base on ayu, blue less.",
+  "version": "0.0.1",
+  "publisher": "vecheslav",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vecheslav/solid-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/vecheslav/solid-theme/issues",
+    "email": "vecheslavdruzhbin@gmail.com"
+  },
+  "engines": {
+    "vscode": "^1.13.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "ayu",
+    "solid",
+    "dark"
+  ],
+  "homepage": "https://github.com/vecheslav/solid-theme",
+  "icon": "assets/logo.png",
+  "contributes": {
+    "themes": [
+      {
+        "label": "Solid Theme Dark",
+        "uiTheme": "vs-dark",
+        "path": "./solid-dark.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node ./build.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "vsce": "1.22.0",
+    "chroma-js": "^2.1.0"
+  }
+}
