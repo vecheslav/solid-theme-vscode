@@ -486,6 +486,7 @@ function getTokenColors() {
       'name': 'Storage',
       'scope': ['storage'],
       'settings': {
+        'fontStyle': 'bold',
         'foreground': scheme.syntax.keyword.hex()
       }
     },

@@ -272,6 +272,7 @@
 				"storage"
 			],
 			"settings": {
+				"fontStyle": "bold",
 				"foreground": "#f5864e"
 			}
 		},
