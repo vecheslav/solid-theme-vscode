@@ -20,7 +20,7 @@ const brightColors = Object.fromEntries(Object.entries(colors).map(([k, v]) => [
 const syntax = {
   tag: colors.blue,
   func: colors.yellow,
-  entity: colors.blue,
+  entity: colors.aqua,
   string: colors.green,
   regexp: colors.aqua,
   markup: colors.purple,
@@ -46,6 +46,7 @@ const common = {
   ui: _('#8c8e94'),
 }
 
+// #292a2c
 const ui = {
   fg: common.ui,
   line: _('#27282c'),

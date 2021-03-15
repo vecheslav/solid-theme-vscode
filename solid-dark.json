@@ -332,7 +332,7 @@
 				"source.c storage.type"
 			],
 			"settings": {
-				"foreground": "#55b2d1"
+				"foreground": "#7eccad"
 			}
 		},
 		{
@@ -419,7 +419,7 @@
 				"entity.name"
 			],
 			"settings": {
-				"foreground": "#55b2d1"
+				"foreground": "#7eccad"
 			}
 		},
 		{
@@ -522,7 +522,7 @@
 				"source.stylus entity.name.tag"
 			],
 			"settings": {
-				"foreground": "#55b2d1"
+				"foreground": "#7eccad"
 			}
 		},
 		{
