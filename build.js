@@ -401,8 +401,8 @@ function getTokenColors() {
   return [
     {
       'settings': {
-        'background': scheme.common.bg,
-        'foreground': scheme.common.fg
+        'background': scheme.common.bg.hex(),
+        'foreground': scheme.common.fg.hex()
       }
     },
     {
@@ -429,8 +429,17 @@ function getTokenColors() {
         'foreground': scheme.syntax.regexp.hex()
       }
     },
-
-
+    {
+      "name": "String interpolation",
+      "scope": [
+        "punctuation.definition.template-expression.begin",
+        "punctuation.definition.template-expression.end",
+        "punctuation.section.embedded"
+      ],
+      "settings": {
+        "foreground": scheme.common.fg.hex()
+      }
+    },
     {
       'name': 'Number',
       'scope': ['constant.numeric'],

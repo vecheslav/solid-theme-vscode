@@ -174,22 +174,8 @@
 	"tokenColors": [
 		{
 			"settings": {
-				"background": {
-					"_rgb": [
-						22,
-						23,
-						25,
-						1
-					]
-				},
-				"foreground": {
-					"_rgb": [
-						230,
-						225,
-						207,
-						1
-					]
-				}
+				"background": "#161719",
+				"foreground": "#e6e1cf"
 			}
 		},
 		{
@@ -221,6 +207,17 @@
 			],
 			"settings": {
 				"foreground": "#7eccad"
+			}
+		},
+		{
+			"name": "String interpolation",
+			"scope": [
+				"punctuation.definition.template-expression.begin",
+				"punctuation.definition.template-expression.end",
+				"punctuation.section.embedded"
+			],
+			"settings": {
+				"foreground": "#e6e1cf"
 			}
 		},
 		{

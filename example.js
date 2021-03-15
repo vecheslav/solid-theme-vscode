@@ -1,6 +1,7 @@
 const Button = props => {
   const { kind, ...other } = props;
   const className = kind === "primary" ? "PrimaryButton" : "SecondaryButton";
+  const lit = `New ${className}`
   return <button className={className} {...other} />;
 };
 
