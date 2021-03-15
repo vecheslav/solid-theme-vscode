@@ -4,44 +4,45 @@ const chroma = require('chroma-js')
 
 const _ = chroma;
 
+const colors = {
+  red: _('#fb7262'),
+  green: _('#bdcc5e'),
+  yellow: _('#f5c15b'),
+  blue: _('#55b2d1'),
+  purple: _('#e08094'),
+  aqua: _('#7eccad'),
+  orange: _('#f5864e'),
+  white: _('#c7c7c7'),
+  gray: _('#626a73'),
+}
+const brightColors = Object.fromEntries(Object.entries(colors).map(([k, v]) => [k, v.brighten(.5)]))
+
 const syntax = {
-  // tag: _('#39BAE6').desaturate(.4).darken(.2),
-  // func: _('#FFB454'),
-  // entity: _('#59C2FF').desaturate(.2).darken(.3),
-  // string: _('#C2D94C').desaturate(.4).darken(.3),
-  // regexp: _('#95E6CB'),
-  // markup: _('#F07178'),
-  // keyword: _('#FF8F40'),
-  // special: _('#E6B673'),
-  // comment: _('#626A73'),
-  // constant: _('#FFEE99').desaturate(.2).darken(.3),
-  // operator: _('#F29668'),
-  // error: _('#FF3333').brighten(1).desaturate(0.2)
-  tag: _('#55aed1'),
-  func: _('#ffb454'),
-  entity: _('#56b2e9'),
-  string: _('#b5c94e'),
-  regexp: _('#95e6cb'),
-  markup: _('#f07178'),
-  keyword: _('#ff8f40'),
-  special: _('#e6b673'),
-  comment: _('#626a73'),
-  constant: _('#eedf92'),
-  operator: _('#f29668'),
-  error: _('#fb7262')
+  tag: colors.blue,
+  func: colors.yellow,
+  entity: colors.blue,
+  string: colors.green,
+  regexp: colors.aqua,
+  markup: colors.purple,
+  keyword: colors.orange,
+  special: colors.aqua,
+  constant: colors.yellow.desaturate(.5).brighten(.9),
+  operator: colors.aqua,
+  error: colors.red,
+  comment: colors.gray,
 }
 
 const vcs = {
-  added: _('#91B362').saturate(.2),
-  modified: _('#6994BF').saturate(.2),
-  removed: _('#D96C75').saturate(.2)
+  added: colors.green.desaturate(.2),
+  modified: colors.blue.desaturate(.2),
+  removed: colors.red.desaturate(.2),
 }
 
 const common = {
-  accent: _('#0089b9'),
+  accent: colors.blue,
   bg: _('#161719'),
   fg: _('#e6e1cf'),
-  white: _('#ffffff'),
+  white: brightColors.white,
   ui: _('#8c8e94'),
 }
 
@@ -54,17 +55,16 @@ const ui = {
     shadow: _('#000000'),
     path: _('#54575e'),
     row: _('#242529'),
-    // row: _('#212226')
   },
   gutter: {
-    normal: _('#44464c')
+    normal: _('#44464c'),
   },
   selection: {
-    bg: _('#373940')
+    bg: _('#373940'),
   },
   guide: {
     normal: _('#2a2d33'),
-    active: _('#4b4f59')
+    active: _('#4b4f59'),
   }
 }
 
@@ -72,14 +72,28 @@ const scheme = {
   common,
   syntax,
   vcs,
-  ui
+  ui,
 }
 
 const terminalColors = {
-  black: scheme.ui.line.hex(),
-  white: '#c7c7c7',
-  brightBlack: '#686868',
-  brightWhite: '#ffffff'
+  background: scheme.common.bg,
+  foreground: scheme.common.fg,
+  ansiBlack: scheme.ui.line,
+  ansiRed: colors.red,
+  ansiGreen: colors.green,
+  ansiYellow: colors.yellow,
+  ansiBlue: colors.blue,
+  ansiMagenta: colors.purple,
+  ansiCyan: colors.aqua,
+  ansiWhite: colors.white,
+  ansiBrightBlack: colors.gray,
+  ansiBrightRed: brightColors.red,
+  ansiBrightGreen: brightColors.green,
+  ansiBrightYellow: brightColors.yellow,
+  ansiBrightBlue: brightColors.blue,
+  ansiBrightMagenta: brightColors.purple,
+  ansiBrightCyan: brightColors.aqua,
+  ansiBrightWhite: brightColors.white,
 }
 
 createTheme()
@@ -90,7 +104,6 @@ function createTheme() {
 
   theme.colors = getThemeColors();
   theme.tokenColors = getTokenColors();
-  // console.log(tokenColors);
 
   fs.writeFileSync(filepath, JSON.stringify(theme, null, '\t'));
   console.log(`Updated ${filepath}`);
@@ -379,24 +392,7 @@ function getThemeColors() {
     // 'settings.modifiedItemIndicator': scheme.vcs.modified.hex(),
 
     // TERMINAL
-    'terminal.background': scheme.common.bg.hex(),
-    'terminal.foreground': scheme.common.fg.hex(),
-    'terminal.ansiBlack': terminalColors.black,
-    'terminal.ansiRed': scheme.syntax.markup.darken(.1).hex(),
-    'terminal.ansiGreen': scheme.syntax.string.darken(.1).hex(),
-    'terminal.ansiYellow': scheme.syntax.func.darken(.1).hex(),
-    'terminal.ansiBlue': scheme.syntax.entity.darken(.1).hex(),
-    'terminal.ansiMagenta': scheme.syntax.constant.darken(.1).hex(),
-    'terminal.ansiCyan': scheme.syntax.regexp.darken(.1).hex(),
-    'terminal.ansiWhite': terminalColors.white,
-    'terminal.ansiBrightBlack': terminalColors.brightBlack,
-    'terminal.ansiBrightRed': scheme.syntax.markup.hex(),
-    'terminal.ansiBrightGreen': scheme.syntax.string.hex(),
-    'terminal.ansiBrightYellow': scheme.syntax.func.hex(),
-    'terminal.ansiBrightBlue': scheme.syntax.entity.hex(),
-    'terminal.ansiBrightMagenta': scheme.syntax.constant.hex(),
-    'terminal.ansiBrightCyan': scheme.syntax.regexp.hex(),
-    'terminal.ansiBrightWhite': terminalColors.brightWhite
+    ...Object.fromEntries(Object.entries(terminalColors).map(([k, v]) => ['terminal.' + k, v.hex()])),
   }
 }
 
